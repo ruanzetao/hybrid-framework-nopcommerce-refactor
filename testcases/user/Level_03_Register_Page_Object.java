@@ -45,7 +45,7 @@ public class Level_03_Register_Page_Object extends BaseTest {
 	@Test
 	public void TC_02_Register_Invalid_Email() {
 		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		// registerPage = new RegisterPageObject(driver);
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox("afc9999@!mailinator.com");
@@ -53,12 +53,12 @@ public class Level_03_Register_Page_Object extends BaseTest {
 		registerPage.inputToConfirmPasswordTextbox(password);
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Wrong email");
-		registerPage.clickToLogoutButton();
 	}
 
+	@Test
 	public void TC_03_Register_Success() {
 		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		// registerPage = new RegisterPageObject(driver);
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);

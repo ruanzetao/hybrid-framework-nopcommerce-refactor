@@ -48,8 +48,8 @@ public class RegisterPageObject extends BasePage {
 	}
 
 	public void clickToLogoutButton() {
-		// TODO Auto-generated method stub
-
+		waitForElementClickable(driver, RegisterPageUI.LOGOUT_LINK);
+		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
 	}
 
 	public String getRegisterSuccessMessage() {
