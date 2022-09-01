@@ -22,9 +22,9 @@ public class RegisterPageObject extends BasePage {
 		sendKeysToElement(driver, RegisterPageUI.LAST_NAME_TEXTBOX, lastName);
 	}
 
-	public void inputToEmailTextbox(String emailValue) {
+	public void inputToEmailTextbox(String email) {
 		waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
-		sendKeysToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, emailValue);
+		sendKeysToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, email);
 	}
 
 	public void inputToPasswordTextbox(String password) {
