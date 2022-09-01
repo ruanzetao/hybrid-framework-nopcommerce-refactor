@@ -1,6 +1,7 @@
 package user;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -51,21 +52,22 @@ public class Level_03_Register_Page_Object extends BaseTest {
 		registerPage.inputToPasswordTextbox(password);
 		registerPage.inputToConfirmPasswordTextbox(password);
 		registerPage.clickToRegisterButton();
-		Assert.assertEquals(registerPage.getEmailErrorMessage(), "Wrong email");
+		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Wrong email");
 		registerPage.clickToLogoutButton();
 	}
-//
-//	public void TC_03_Register_Success() {
-//		registerPage = homePage.clickToRegisterLink();
-//		registerPage.inputToFirstNameTextbox(firstName);
-//		registerPage.inputToLastNameTextbox(lastName);
-//		registerPage.inputToEmailTextbox(emailAddress);
-//		registerPage.inputToPasswordTextbox(password);
-//		registerPage.inputToConfirmPasswordTextbox(password);
-//		registerPage.clickToRegisterButton();
-//		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-//		registerPage.clickToLogoutButton();
-//	}
+
+	public void TC_03_Register_Success() {
+		homePage.clickToRegisterLink();
+		registerPage = new RegisterPageObject(driver);
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(emailAddress);
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox(password);
+		registerPage.clickToRegisterButton();
+		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
+		registerPage.clickToLogoutButton();
+	}
 
 //	@Test
 //	public void TC_04_Register_Existing_Email() {
@@ -82,8 +84,8 @@ public class Level_03_Register_Page_Object extends BaseTest {
 //
 //	}
 
-//	@AfterClass
-//	public void afterClass() {
-//		driver.quit();
-//	}
+	@AfterClass
+	public void afterClass() {
+		driver.quit();
+	}
 }

@@ -42,9 +42,9 @@ public class RegisterPageObject extends BasePage {
 		clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
 	}
 
-	public String getEmailErrorMessage() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getErrorMessageAtEmailTextbox() {
+		waitForAllElementsVisible(driver, RegisterPageUI.EMAIL_ERROR_MESSAGE);
+		return getElementText(driver, RegisterPageUI.EMAIL_ERROR_MESSAGE);
 	}
 
 	public void clickToLogoutButton() {
@@ -53,8 +53,8 @@ public class RegisterPageObject extends BasePage {
 	}
 
 	public String getRegisterSuccessMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementVisible(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
+		return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
 	}
 
 }
