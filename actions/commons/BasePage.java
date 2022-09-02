@@ -188,39 +188,39 @@ public class BasePage {
 		driver.switchTo().defaultContent();
 	}
 
-	protected void scrollToBottomPage(WebDriver driver) {
+	public void scrollToBottomPage(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
 
-	protected void clickToElementByJS(WebDriver driver, String locator) {
+	public void clickToElementByJS(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locator));
 	}
 
-	protected void scrollToElement(WebDriver driver, String locator) {
+	public void scrollToElement(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locator));
 	}
 
-	protected void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
+	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, locator));
 	}
 
-	protected void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
+	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
 				getWebElement(driver, locator));
 	}
 
-	protected String getElementValidationMessage(WebDriver driver, String locator) {
+	public String getElementValidationMessage(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;",
 				getWebElement(driver, locator));
 	}
 
-	protected boolean isImageLoaded(WebDriver driver, String locator) {
+	public boolean isImageLoaded(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		boolean status = (boolean) jsExecutor.executeScript(
 				"return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",

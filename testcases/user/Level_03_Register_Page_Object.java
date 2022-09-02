@@ -31,7 +31,7 @@ public class Level_03_Register_Page_Object extends BaseTest {
 
 		firstName = "SangNg";
 		lastName = "FC";
-		emailAddress = "afc" + generateFakeNumber() + "mailinator.com";
+		emailAddress = "afc" + generateFakeNumber() + "@mailinator.com";
 		password = "123456";
 	}
 
@@ -45,7 +45,7 @@ public class Level_03_Register_Page_Object extends BaseTest {
 	@Test
 	public void TC_02_Register_Invalid_Email() {
 		homePage.clickToRegisterLink();
-		// registerPage = new RegisterPageObject(driver);
+		registerPage = new RegisterPageObject(driver);
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox("afc9999@!mailinator.com");
@@ -58,7 +58,7 @@ public class Level_03_Register_Page_Object extends BaseTest {
 	@Test
 	public void TC_03_Register_Success() {
 		homePage.clickToRegisterLink();
-		// registerPage = new RegisterPageObject(driver);
+		registerPage = new RegisterPageObject(driver);
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);
@@ -69,20 +69,46 @@ public class Level_03_Register_Page_Object extends BaseTest {
 		registerPage.clickToLogoutButton();
 	}
 
-//	@Test
-//	public void TC_04_Register_Existing_Email() {
-//
-//	}
-//
-//	@Test
-//	public void TC_05_Register_Password_Less_Than_6_Characters() {
-//
-//	}
-//
-//	@Test
-//	public void TC_06_Register_Incorrect_Confirm_Password() {
-//
-//	}
+	@Test
+	public void TC_04_Register_Existing_Email() {
+		homePage.clickToRegisterLink();
+		registerPage = new RegisterPageObject(driver);
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(emailAddress);
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox(password);
+		registerPage.clickToRegisterButton();
+		Assert.assertEquals(registerPage.getExistingMessageAtEmailTextbox(), "The specified email already exists");
+	}
+
+	@Test
+	public void TC_05_Register_Password_Less_Than_6_Characters() {
+		homePage.clickToRegisterLink();
+		registerPage = new RegisterPageObject(driver);
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(emailAddress);
+		registerPage.inputToPasswordTextbox("12345");
+		registerPage.inputToConfirmPasswordTextbox("12345");
+		registerPage.clickToRegisterButton();
+		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(),
+				"Password must meet the following rules:\nmust have at least 6 characters");
+	}
+
+	@Test
+	public void TC_06_Register_Incorrect_Confirm_Password() {
+		homePage.clickToRegisterLink();
+		registerPage = new RegisterPageObject(driver);
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox("afc" + generateFakeNumber() + "@mailinator.com");
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox("11223334444");
+		registerPage.clickToRegisterButton();
+		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(),
+				"The password and confirmation password do not match.");
+	}
 
 	@AfterClass
 	public void afterClass() {
