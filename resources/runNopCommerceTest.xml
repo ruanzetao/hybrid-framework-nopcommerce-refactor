@@ -3,7 +3,7 @@
   <test name="Run on Firefox">
   <parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="user.Level_03_Page_Object_Login"/>
+      <class name="user.Level_06_Page_Generator_Login"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
