@@ -1,4 +1,4 @@
-package user;
+package com.nopCommerce.user;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -7,27 +7,26 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class Level_03_Page_Object_Register extends BaseTest {
+public class Level_06_Page_Generator_Register extends BaseTest {
 	String projectPath = System.getProperty("user.dir");
 	String emailAddress, firstName, lastName, password;
 
-	private HomePageObject homePage;
-	private LoginPageObject loginPage;
-	private RegisterPageObject registerPage;
+	private UserHomePageObject homePage;
+	private UserLoginPageObject loginPage;
+	private UserRegisterPageObject registerPage;
 
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		getBrowserDriver(browserName);
 
-		homePage = new HomePageObject(driver);
-		registerPage = new RegisterPageObject(driver);
-//		homePage = PageGeneratorManager.getHomePage(driver);
-//		registerPage = PageGeneratorManager.getRegisterPage(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
+		registerPage = PageGeneratorManager.getRegisterPage(driver);
 
 		firstName = "SangNg";
 		lastName = "FC";
@@ -37,15 +36,14 @@ public class Level_03_Page_Object_Register extends BaseTest {
 
 	@Test
 	public void TC_01_Register_Empty_Data() {
-		homePage.clickToRegisterLink();
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.clickToRegisterButton();
 		// Assert something
 	}
 
 	@Test
 	public void TC_02_Register_Invalid_Email() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox("afc9999@!mailinator.com");
@@ -57,8 +55,7 @@ public class Level_03_Page_Object_Register extends BaseTest {
 
 	@Test
 	public void TC_03_Register_Success() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);
@@ -71,8 +68,7 @@ public class Level_03_Page_Object_Register extends BaseTest {
 
 	@Test
 	public void TC_04_Register_Existing_Email() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);
@@ -84,8 +80,7 @@ public class Level_03_Page_Object_Register extends BaseTest {
 
 	@Test
 	public void TC_05_Register_Password_Less_Than_6_Characters() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);
@@ -98,8 +93,7 @@ public class Level_03_Page_Object_Register extends BaseTest {
 
 	@Test
 	public void TC_06_Register_Incorrect_Confirm_Password() {
-		homePage.clickToRegisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox("afc" + generateFakeNumber() + "@mailinator.com");

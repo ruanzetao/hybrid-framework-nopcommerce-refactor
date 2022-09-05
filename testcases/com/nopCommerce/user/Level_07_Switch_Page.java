@@ -1,4 +1,4 @@
-package user;
+package com.nopCommerce.user;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -7,26 +7,26 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.AddressPageObject;
-import pageObjects.CustomerInforPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyProductReviewsPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
-import pageObjects.RewardPointsPageObject;
+import pageObjects.nopCommerce.user.UserAddressPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewsPageObject;
+import pageObjects.nopCommerce.user.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageObjects.nopCommerce.user.UserRewardPointsPageObject;
 
 public class Level_07_Switch_Page extends BaseTest {
 	String projectPath = System.getProperty("user.dir");
 	String emailAddress, firstName, lastName, password;
 
-	private HomePageObject homePage;
-	private LoginPageObject loginPage;
-	private RegisterPageObject registerPage;
-	private AddressPageObject addressPage;
-	private MyProductReviewsPageObject myProductReviewsPage;
-	private CustomerInforPageObject customerInforPage;
-	private RewardPointsPageObject rewardPointsPage;
+	private UserHomePageObject homePage;
+	private UserLoginPageObject loginPage;
+	private UserRegisterPageObject registerPage;
+	private UserAddressPageObject addressPage;
+	private UserMyProductReviewsPageObject myProductReviewsPage;
+	private UserCustomerInforPageObject customerInforPage;
+	private UserRewardPointsPageObject rewardPointsPage;
 
 	@Parameters("browser")
 	@BeforeClass
